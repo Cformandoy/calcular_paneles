@@ -18,7 +18,7 @@ export interface FormData {
 
 export default function Home() {
 
-  const {register, handleSubmit} = useForm<FormData>();
+  const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
 
 
   const onSubmit = (data: FormData) => {
@@ -41,10 +41,13 @@ export default function Home() {
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="largoPanel">Largo</Label>
                   <Input type="number" id="largoPanel" placeholder="Ingrese el largo del panel" {...register("panel.largo", { required: true, valueAsNumber: true })} />
+                  {errors.panel?.largo && <span className="text-red-500">El largo del panel es requerido</span>}
                 </div>
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="anchoPanel">Ancho</Label>
                   <Input type="number" id="anchoPanel" placeholder="Ingrese el ancho del panel" {...register("panel.ancho", { required: true, valueAsNumber: true })} />
+                  {errors.panel?.ancho && <span className="text-red-500">El ancho del panel es requerido</span>}
+
                 </div>
               </div>
               <div className="mt-6">
@@ -52,10 +55,14 @@ export default function Home() {
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="largoTecho">Largo</Label>
                   <Input type="number" id="largoTecho" placeholder="Ingrese el largo del techo" {...register("techo.largo", { required: true, valueAsNumber: true })} />
+                  {errors.techo?.largo && <span className="text-red-500">El largo del techo es requerido</span>}
+
                 </div>
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="anchoTecho">Ancho</Label>
                   <Input type="number" id="anchoTecho" placeholder="Ingrese el ancho del techo" {...register("techo.ancho", { required: true, valueAsNumber: true })} />
+                  {errors.techo?.ancho && <span className="text-red-500">El ancho del techo es requerido</span>}
+
                 </div>
               </div>
 
