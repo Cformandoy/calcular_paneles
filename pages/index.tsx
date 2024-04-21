@@ -1,8 +1,16 @@
-import Image from "next/image";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  return(<p>vacio</p>);
+  return(
+    <>
+      <div className="grid grid-cols-4 gap-4" style={{ height: '100vh', padding: '1rem' }}>
+
+      <div className="col-span-1">
+        Form
+      </div>
+      <div className="col-span-3">
+        Techo Paneles
+      </div>
+      </div>
+    </>
+  );
 }
