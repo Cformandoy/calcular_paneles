@@ -21,7 +21,8 @@ export default function Home() {
 
   const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
   const [totalPaneles, setTotalPaneles] = useState(0);
-
+  const [totalPanelesVerticales, setTotalPanelesVerticales] = useState(0)
+  const [totalPanelesHorizontales, setTotalPanelesHorizontales] = useState(0)
 
 
   const onSubmit = (data: FormData) => {
@@ -40,10 +41,13 @@ export default function Home() {
     const areaTechoPanelesVerticales = (techo.ancho * Math.trunc(techo.largo / panel.largo)) * panel.largo;
     const areaTechoPanelesHorizontales = areaTecho - areaTechoPanelesVerticales
 
-    console.log('areaTechoPanelesVerticales', areaTechoPanelesVerticales)
-    console.log('areaTechoPanelesHorizontales', areaTechoPanelesHorizontales)
+    // Calcula la cantidad total de paneles verticales
+    setTotalPanelesVerticales(Math.trunc(areaTechoPanelesVerticales / areaPanel))
+    
+    // Calcula la cantidad total de paneles horizontales
+    setTotalPanelesHorizontales(Math.trunc(areaTechoPanelesHorizontales / areaPanel))
 
-
+    // Setea el numero total de paneles
     setTotalPaneles(totalPaneles)
 
 
@@ -97,6 +101,10 @@ export default function Home() {
             </form>
             <br />
             {`Total Paneles ${totalPaneles}`}
+            <br />
+            {`Total Paneles Verticales ${totalPanelesVerticales}`}
+            <br />
+            {`Total Paneles Horizontales ${totalPanelesHorizontales}`}
           </CardContent>
         </Card>
 
