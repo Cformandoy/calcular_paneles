@@ -16,6 +16,9 @@ export interface FormData {
   };
 }
 
+const SCALE_FACTOR = 100; // Factor de escala para aumentar visualmente el tamaño del techo
+
+
 
 export default function Home() {
 
@@ -23,6 +26,9 @@ export default function Home() {
   const [totalPaneles, setTotalPaneles] = useState(0);
   const [totalPanelesVerticales, setTotalPanelesVerticales] = useState(0)
   const [totalPanelesHorizontales, setTotalPanelesHorizontales] = useState(0)
+
+  const [techoStyle, setTechoStyle] = useState<{width: string; height: string}>({ width: '0px', height: '0px' });
+
 
 
   const onSubmit = (data: FormData) => {
@@ -50,8 +56,8 @@ export default function Home() {
     // Setea el numero total de paneles
     setTotalPaneles(totalPaneles)
 
-
-
+    // Aplica el estilo y dimensiones para el techo
+    setTechoStyle({ width: techo.ancho * SCALE_FACTOR + 'px', height: techo.largo * SCALE_FACTOR + 'px'})
 
   }
   return(
@@ -110,7 +116,16 @@ export default function Home() {
 
       </div>
       <div className="col-span-3">
-        Techo Paneles
+        <div 
+          id="techo"
+          style={{
+            width:techoStyle.width,
+            height:techoStyle.height,
+            outline: '4px solid black'
+          }}
+        >
+          techo
+        </div>
       </div>
       </div>
     </>
