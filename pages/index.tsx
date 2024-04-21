@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export interface FormData {
@@ -19,10 +20,28 @@ export interface FormData {
 export default function Home() {
 
   const {register, handleSubmit, formState: { errors }} = useForm<FormData>();
+  const [totalPaneles, setTotalPaneles] = useState(0);
+
 
 
   const onSubmit = (data: FormData) => {
-    console.log(data)
+    const { techo, panel } = data;
+
+    //Calcula el area del techo en metros cuadrados
+    const areaTecho = techo.ancho * techo.largo;
+
+    //Calcula el area del panel en metros cuadrados
+    const areaPanel = panel.ancho * panel.largo;
+
+    //Calcula el numero total de paneles que caben en el techo
+    const totalPaneles = Math.floor(areaTecho/areaPanel);
+
+
+    setTotalPaneles(totalPaneles)
+
+
+
+
   }
   return(
     <>
@@ -69,6 +88,8 @@ export default function Home() {
 
               <Button type="submit" className="mt-6" style={{width:'100%'}}>Calcular</Button>
             </form>
+            <br />
+            {`Total Paneles ${totalPaneles}`}
           </CardContent>
         </Card>
 
