@@ -36,6 +36,13 @@ export default function Home() {
     //Calcula el numero total de paneles que caben en el techo
     const totalPaneles = Math.floor(areaTecho/areaPanel);
 
+    // Calcula el area en relacion a la direccion de los paneles
+    const areaTechoPanelesVerticales = (techo.ancho * Math.trunc(techo.largo / panel.largo)) * panel.largo;
+    const areaTechoPanelesHorizontales = areaTecho - areaTechoPanelesVerticales
+
+    console.log('areaTechoPanelesVerticales', areaTechoPanelesVerticales)
+    console.log('areaTechoPanelesHorizontales', areaTechoPanelesHorizontales)
+
 
     setTotalPaneles(totalPaneles)
 
