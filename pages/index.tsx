@@ -18,7 +18,7 @@ export interface FormData {
 
 export default function Home() {
 
-  const {handleSubmit} = useForm<FormData>();
+  const {register, handleSubmit} = useForm<FormData>();
 
 
   const onSubmit = (data: FormData) => {
@@ -40,22 +40,22 @@ export default function Home() {
                 <h2>Panel</h2>
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="largoPanel">Largo</Label>
-                  <Input type="number" id="largoPanel" placeholder="Ingrese el largo del panel" />
+                  <Input type="number" id="largoPanel" placeholder="Ingrese el largo del panel" {...register("panel.largo", { required: true, valueAsNumber: true })} />
                 </div>
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="anchoPanel">Ancho</Label>
-                  <Input type="number" id="anchoPanel" placeholder="Ingrese el ancho del panel" />
+                  <Input type="number" id="anchoPanel" placeholder="Ingrese el ancho del panel" {...register("panel.ancho", { required: true, valueAsNumber: true })} />
                 </div>
               </div>
               <div className="mt-6">
                 <h2>Techo</h2>
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="largoTecho">Largo</Label>
-                  <Input type="number" id="largoTecho" placeholder="Ingrese el largo del techo" />
+                  <Input type="number" id="largoTecho" placeholder="Ingrese el largo del techo" {...register("techo.largo", { required: true, valueAsNumber: true })} />
                 </div>
                 <div className="mt-2">
                   <Label className="text-muted-foreground" htmlFor="anchoTecho">Ancho</Label>
-                  <Input type="number" id="anchoTecho" placeholder="Ingrese el ancho del techo" />
+                  <Input type="number" id="anchoTecho" placeholder="Ingrese el ancho del techo" {...register("techo.ancho", { required: true, valueAsNumber: true })} />
                 </div>
               </div>
 
