@@ -16,6 +16,12 @@ export interface FormData {
   };
 }
 
+
+export interface renderStyle {
+  width: string; 
+  height: string
+}
+
 const SCALE_FACTOR = 100; // Factor de escala para aumentar visualmente el tamaño del techo
 
 
@@ -27,7 +33,9 @@ export default function Home() {
   const [totalPanelesVerticales, setTotalPanelesVerticales] = useState(0)
   const [totalPanelesHorizontales, setTotalPanelesHorizontales] = useState(0)
 
-  const [techoStyle, setTechoStyle] = useState<{width: string; height: string}>({ width: '0px', height: '0px' });
+  const [techoStyle, setTechoStyle] = useState<renderStyle>({ width: '0px', height: '0px' });
+  const [panelStyle, setPanelStyle] = useState<renderStyle>({ width: '0px', height: '0px' });
+
 
 
 
@@ -58,6 +66,9 @@ export default function Home() {
 
     // Aplica el estilo y dimensiones para el techo
     setTechoStyle({ width: techo.ancho * SCALE_FACTOR + 'px', height: techo.largo * SCALE_FACTOR + 'px'})
+
+    // Aplica el estilo y dimensiones para los paneles
+    setPanelStyle({ width: panel.ancho * SCALE_FACTOR + 'px', height: panel.largo * SCALE_FACTOR + 'px' });
 
   }
   return(
@@ -121,10 +132,24 @@ export default function Home() {
           style={{
             width:techoStyle.width,
             height:techoStyle.height,
-            outline: '4px solid black'
+            outline: '4px solid black',
+            display:'flex',
+            flexWrap:'wrap'
           }}
         >
-          techo
+          {
+            Array.from(Array(totalPanelesVerticales), (e,i) =>{
+              return <div
+                key={`panel-vertical-${i}`}
+                style={{
+                  width:panelStyle.width,
+                  height:panelStyle.height,
+                  backgroundColor:'blue',
+                  outline:'1px solid white',
+                }}
+              />
+            })
+          }
         </div>
       </div>
       </div>
