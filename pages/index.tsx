@@ -150,6 +150,19 @@ export default function Home() {
               />
             })
           }
+          {
+            Array.from(Array(totalPanelesHorizontales), (e,i) =>{
+              return <div
+                key={`panel-horizontal-${i}`}
+                style={{
+                  width:panelStyle.height,
+                  height:panelStyle.width,
+                  backgroundColor:'blue',
+                  outline:'1px solid white',
+                }}
+              />
+            })
+          }
         </div>
       </div>
       </div>
