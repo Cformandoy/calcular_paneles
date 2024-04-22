@@ -74,43 +74,47 @@ export default function Home() {
 
         </div>
         <div className="col-span-3">
-          <div
-            id="techo"
-            style={{
-              width: techoStyle.width,
-              height: techoStyle.height,
-              outline: '4px solid black',
-              display: 'flex',
-              flexWrap: 'wrap'
-            }}
-          >
-            {
-              Array.from(Array(totalPanelesVerticales), (e, i) => {
-                return <div
-                  key={`panel-vertical-${i}`}
-                  style={{
-                    width: panelStyle.width,
-                    height: panelStyle.height,
-                    backgroundColor: 'blue',
-                    outline: '1px solid white',
-                  }}
-                />
-              })
-            }
-            {
-              Array.from(Array(totalPanelesHorizontales), (e, i) => {
-                return <div
-                  key={`panel-horizontal-${i}`}
-                  style={{
-                    width: panelStyle.height,
-                    height: panelStyle.width,
-                    backgroundColor: 'blue',
-                    outline: '1px solid white',
-                  }}
-                />
-              })
-            }
-          </div>
+          {
+            techoStyle.width !== '0px' ?
+              <div
+                id="techo"
+                style={{
+                  width: techoStyle.width,
+                  height: techoStyle.height,
+                  outline: '4px solid black',
+                  display: 'flex',
+                  flexWrap: 'wrap'
+                }}
+              >
+                {
+                  Array.from(Array(totalPanelesVerticales), (e, i) => {
+                    return <div
+                      key={`panel-vertical-${i}`}
+                      style={{
+                        width: panelStyle.width,
+                        height: panelStyle.height,
+                        backgroundColor: 'blue',
+                        outline: '1px solid white',
+                      }}
+                    />
+                  })
+                }
+                {
+                  Array.from(Array(totalPanelesHorizontales), (e, i) => {
+                    return <div
+                      key={`panel-horizontal-${i}`}
+                      style={{
+                        width: panelStyle.height,
+                        height: panelStyle.width,
+                        backgroundColor: 'blue',
+                        outline: '1px solid white',
+                      }}
+                    />
+                  })
+                }
+              </div> : <></>
+          }
+
         </div>
       </div>
     </>
